@@ -6,11 +6,11 @@ const storage = @cImport({
     @cInclude("storage.c");
 });
 
-fn zigStore(key: [:0]const u8, value: [:0]const u8) void {
+pub fn zigStore(key: [:0]const u8, value: [:0]const u8) void {
     storage.store(key, @intCast(usize, @ptrToInt(value.ptr)));
 }
 
-fn zigFetch(key: [:0]const u8) ?[*]u8 {
+pub fn zigFetch(key: [:0]const u8) ?[*]u8 {
     const Result = struct {
         var value: [*c]u8 = undefined;
     };
