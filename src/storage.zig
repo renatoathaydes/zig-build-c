@@ -22,3 +22,15 @@ test "can store data in hash table" {
     zigStore("foo", "foo-value");
     try expectEqual(@as(?[*]const u8, "foo-value"), zigFetch("foo"));
 }
+
+test "can store data more easily in Zig HashMap" {
+    const allocator = std.heap.c_allocator;
+    var map = std.StringHashMap(i32).init(allocator);
+
+    try expectEqual(@as(u32, 0), map.count());
+    try map.put("one", 1);
+
+    try expectEqual(@as(?i32, 1), map.get("one"));
+    try expectEqual(@as(?i32, null), map.get("two"));
+    try std.testing.expect(map.count() > 0);
+}
