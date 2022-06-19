@@ -9,7 +9,8 @@ pub export fn add(a: i32, b: i32) i32 {
 }
 
 test "basic add functionality" {
-    try testing.expectEqual(@as(i32, 10), clib.add(3, 7));
+    try testing.expectEqual(@as(i32, 10), clib.c_add(3, 7));
+    try testing.expectEqual(@as(i32, 10), add(3, 7));
 }
 
 test "counting bytes in C" {
