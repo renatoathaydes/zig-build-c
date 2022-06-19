@@ -9,6 +9,5 @@ test "basic add functionality" {
 }
 
 test "counting bytes in C" {
-    var cstr = "ABC".*;
-    try testing.expectEqual(@as(i32, 3), clib.count_bytes(&cstr));
+    try testing.expectEqual(@as(i32, 3), clib.count_bytes("ABC"));
 }
